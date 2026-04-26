@@ -1,278 +1,482 @@
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Cardápio Digital- El Shaday</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cardápio Digital - El Shaday</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&display=swap');
 
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Montserrat', sans-serif; }
 
-<style>
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&display=swap');
+        body {
+            background: url('https://i.ibb.co/SwzFSC6y/file-000000008bc871f5b8de0c092579cb21.png') no-repeat center center fixed;
+            background-size: cover;
+            color: white;
+            min-height: 100vh;
+            padding: 30px 0;
+            display: flex;
+            justify-content: center;
+        }
 
-* { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Montserrat', sans-serif; }
+        .container {
+            background: rgba(0, 0, 0, 0.75);
+            padding: 35px 20px;
+            border-radius: 30px;
+            backdrop-filter: blur(15px);
+            max-width: 420px;
+            width: 92%;
+            border: 1px solid rgba(255,255,255,0.1);
+        }
 
-body {
-    background: url('https://i.ibb.co/SwzFSC6y/file-000000008bc871f5b8de0c092579cb21.png') no-repeat center center fixed;
-    background-size: cover;
-    color: white;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 100vh;
-    padding: 30px 0;
-}
+        .logo { width: 130px; display: block; margin: 0 auto 10px; }
+        .title { text-align: center; margin-bottom: 25px; }
 
-.container {
-    background: rgba(0, 0, 0, 0.75);
-    padding: 35px 20px;
-    border-radius: 30px;
-    backdrop-filter: blur(15px);
-    max-width: 420px;
-    width: 92%;
-    border: 1px solid rgba(255,255,255,0.1);
-}
+        .section { margin-bottom: 30px; }
 
-.logo {
-    width: 130px;
-    display: block;
-    margin: 0 auto 10px;
-}
+        .section h2 {
+            font-size: 0.95rem;
+            margin-bottom: 12px;
+            opacity: 0.85;
+            text-transform: uppercase;
+            border-bottom: 1px solid rgba(255,255,255,0.2);
+            padding-bottom: 6px;
+        }
 
-.title {
-    text-align: center;
-    margin-bottom: 25px;
-}
+        .item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 12px 0;
+            border-bottom: 1px dashed rgba(255,255,255,0.15);
+            font-size: 0.97rem;
+        }
 
-.section {
-    margin-bottom: 25px;
-}
+        .item span:first-child { flex: 1; padding-right: 10px; }
+        .item .preco {
+            min-width: 75px;
+            text-align: right;
+            font-weight: 600;
+            color: #ffb43a;
+        }
 
-.section h2 {
-    font-size: 0.9rem;
-    margin-bottom: 10px;
-    opacity: 0.8;
-    text-transform: uppercase;
-    border-bottom: 1px solid rgba(255,255,255,0.2);
-    padding-bottom: 5px;
-}
+        .qty {
+            display: none;
+            gap: 8px;
+            align-items: center;
+        }
+        .modo-pedido .qty { display: flex; }
+        .qty button {
+            background: #ffb43a;
+            color: #000;
+            border: none;
+            width: 34px;
+            height: 34px;
+            border-radius: 8px;
+            font-size: 1.2rem;
+            font-weight: bold;
+        }
+        .qty span {
+            min-width: 30px;
+            text-align: center;
+            font-weight: 600;
+            font-size: 1.05rem;
+        }
 
-.item {
-    display: flex;
-    justify-content: space-between;
-    padding: 8px 0;
-    font-size: 0.95rem;
-    border-bottom: 1px dashed rgba(255,255,255,0.1);
-}
+        .modo-btn {
+            position: fixed;
+            top: 15px;
+            right: 15px;
+            background: linear-gradient(45deg, #ff7b00, #ffb43a);
+            color: #000;
+            padding: 12px 18px;
+            border-radius: 12px;
+            font-weight: bold;
+            z-index: 9999;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.4);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            user-select: none;
+        }
 
-.item span:last-child {
-    font-weight: 600;
-    color: #ffb43a;
-}
+        .modo-pedido .modo-btn {
+            background: linear-gradient(45deg, #555, #777);
+            color: white;
+        }
 
-.sub {
-    font-size: 0.7rem;
-    opacity: 0.7;
-}
+        .resumo-btn {
+            position: fixed;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            padding: 16px 28px;
+            border-radius: 50px;
+            background: linear-gradient(45deg, #ff7b00, #ffb43a);
+            color: #000;
+            font-weight: bold;
+            text-decoration: none;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.5);
+            z-index: 1000;
+            display: none;
+            white-space: nowrap;
+        }
+        .modo-pedido .resumo-btn { display: block; }
 
-/* BOTÃO */
-.order-btn {
-    position: fixed;
-    bottom: 20px;
-    left: 50%;
-    transform: translateX(-50%);
-    background: linear-gradient(45deg, #ff7b00, #ffb43a);
-    color: #000;
-    padding: 16px 25px;
-    border-radius: 50px;
-    font-weight: 700;
-    text-decoration: none;
-    box-shadow: 0 10px 25px rgba(0,0,0,0.5);
-    z-index: 1000;
-}
+        .modal {
+            position: fixed;
+            inset: 0;
+            background: rgba(0,0,0,0.85);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 99999;
+        }
 
-/* MENU */
-.menu-wrapper {
-    position: fixed;
-    bottom: 90px;
-    left: 50%;
-    transform: translateX(-50%);
-    text-align: center;
-    pointer-events: none;
-}
+        .modal-content {
+            background: #111;
+            padding: 25px;
+            border-radius: 20px;
+            width: 90%;
+            max-width: 400px;
+        }
 
-.menu-text {
-    font-size: 0.7rem;
-    opacity: 0.7;
-    margin-bottom: 8px;
-    opacity: 0;
-    transform: translateY(20px);
-}
+        .modal h3 { margin-bottom: 15px; text-align: center; font-size: 1.3rem; }
 
-.menu {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-}
+        .form-group {
+            margin-bottom: 15px;
+        }
 
-.menu a {
-    padding: 12px 20px;
-    border-radius: 10px;
-    text-decoration: none;
-    color: white;
-    font-weight: 600;
-    text-align: center;
-    opacity: 0;
-    transform: translateY(40px);
-}
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-size: 0.95rem;
+            font-weight: 600;
+        }
 
-.insta { background: linear-gradient(45deg,#833ab4,#fd1d1d,#fcb045); }
-.whats { background: #25d366; }
+        .form-group input, .form-group textarea {
+            width: 100%;
+            padding: 12px;
+            border-radius: 8px;
+            border: none;
+            background: #222;
+            color: white;
+            font-size: 1rem;
+        }
 
-/* ATIVO */
-.menu-wrapper.show {
-    pointer-events: auto;
-}
+        .lista { margin: 15px 0; line-height: 1.7; font-size: 1rem; }
+        .total { font-weight: bold; text-align: center; margin: 15px 0; font-size: 1.2rem; color: #ffb43a; }
 
-/* ENTRADA */
-.menu-wrapper.show .menu-text {
-    animation: subir 0.3s ease forwards;
-}
+        .entrega {
+            background: rgba(255, 180, 58, 0.15);
+            border: 2px solid #ffb43a;
+            border-radius: 12px;
+            padding: 12px;
+            margin: 15px 0;
+        }
 
-.menu-wrapper.show a {
-    animation: subir 0.4s ease forwards;
-}
+        .modal-buttons a {
+            display: block;
+            margin: 8px 0;
+            padding: 14px;
+            border-radius: 12px;
+            text-align: center;
+            font-weight: bold;
+            text-decoration: none;
+            color: white;
+            font-size: 1.05rem;
+        }
 
-.menu-wrapper.show a:nth-child(1) { animation-delay: 0.05s; }
-.menu-wrapper.show a:nth-child(2) { animation-delay: 0.1s; }
-.menu-wrapper.show a:nth-child(3) { animation-delay: 0.15s; }
+        .insta { background: linear-gradient(45deg, #833ab4, #fd1d1d, #fcb045); }
+        .whats { background: #25d366; }
+        .voltar { background: #444; }
 
-/* SAÍDA */
-.menu-wrapper.hide .menu-text {
-    animation: descer 0.2s ease forwards;
-}
-
-.menu-wrapper.hide a {
-    animation: descer 0.3s ease forwards;
-}
-
-.menu-wrapper.hide a:nth-child(1) { animation-delay: 0.05s; }
-.menu-wrapper.hide a:nth-child(2) { animation-delay: 0.1s; }
-.menu-wrapper.hide a:nth-child(3) { animation-delay: 0.15s; }
-
-@keyframes subir {
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-@keyframes descer {
-    to {
-        opacity: 0;
-        transform: translateY(40px);
-    }
-}
-</style>
+        .error { color: #ff6b6b; font-size: 0.85rem; margin-top: 4px; }
+    </style>
 </head>
-
 <body>
 
-<div class="container">
-
-<img src="https://i.ibb.co/kgBQGyR5/Screenshot-20260422-085129-Instagram.png" class="logo">
-
-<div class="title">
-    <h2>Cardápio Digital</h2>
-</div>
-
-<div class="section">
-    <h2>🍴 Salgados</h2>
-    <div class="item">Empadinha de frango <span>R$ 8</span></div>
-    <div class="item">Empadinha de camarão <span>R$ 10</span></div>
-    <div class="item">Coxinha <span>R$ 5</span></div>
-    <div class="item">Pastel <span>R$ 6</span></div>
-    <div class="item">Pizza <span>R$ 5</span></div>
-</div>
-
-<div class="section">
-    <h2>🍲 Pratos</h2>
-    <div class="item">Lasanha <span>R$ 10</span></div>
-    <div class="item">Torta <span>R$ 8</span></div>
-    <div class="item">Caldo <span>R$ 6</span></div>
-    <div class="item">Creme de galinha <span>R$ 8</span></div>
-</div>
-
-<div class="section">
-    <h2>🍰 Doces</h2>
-    <div class="item">Bolo mole <span>R$ 3,50</span></div>
-    <div class="item">Bolo de cenoura com chocolate <span>R$ 3,50</span></div>
-</div>
-
-<div class="section">
-    <h2>🥤 Bebidas</h2>
-    <div class="item">Coca lata <span>R$ 5</span></div>
-    <div class="item">Coca 600ml <span>R$ 7</span></div>
-    <div class="item">Delrio 2L (Guaraná) <span>R$ 8</span></div>
-    <div class="item">Delrio 250ml <span>R$ 2</span></div>
-    <span class="sub">Guaraná, Laranja, Cola</span>
-</div>
-
-<div class="section">
-    <h2>🍺 Cervejas</h2>
-    <div class="item">Itaipava <span>R$ 5</span></div>
-    <div class="item">Skol <span>R$ 5</span></div>
-</div>
-
-</div>
-
-<!-- MENU -->
-<div id="menuWrapper" class="menu-wrapper">
-    <div class="menu-text">Escolha onde deseja pedir</div>
-    <div class="menu">
-        <a href="https://www.instagram.com/lanchoneteelshaday2026" target="_blank" class="insta">
-            <i class="fab fa-instagram"></i> Instagram
-        </a>
-        <a href="https://wa.me/558888956516?text=Olá%2C%20quero%20fazer%20um%20pedido" target="_blank" class="whats">
-            <i class="fab fa-whatsapp"></i> Geane
-        </a>
-        <a href="https://wa.me/558894487711?text=Olá%2C%20quero%20fazer%20um%20pedido" target="_blank" class="whats">
-            <i class="fab fa-whatsapp"></i> Eliane
-        </a>
+    <div class="modo-btn" id="modoBtn" onclick="toggleModo()">
+        🛒 Fazer Pedido
     </div>
-</div>
 
-<!-- BOTÃO -->
-<a href="#" class="order-btn" onclick="toggleMenu(event)">Pedir agora</a>
+    <div class="container">
+        <img src="https://i.ibb.co/kgBQGyR5/Screenshot-20260422-085129-Instagram.png" class="logo" alt="Logo El Shaday">
+        <div class="title"><h2>Cardápio Digital</h2></div>
 
-<script>
-let aberto = false;
+        <div class="section">
+            <h2>🍴 Salgados</h2>
+            <div class="item"><span>Empadinha de frango</span><span class="preco">R$ 8,00</span></div>
+            <div class="item"><span>Empadinha de camarão</span><span class="preco">R$ 10,00</span></div>
+            <div class="item"><span>Coxinha</span><span class="preco">R$ 5,00</span></div>
+            <div class="item"><span>Pastel</span><span class="preco">R$ 6,00</span></div>
+            <div class="item"><span>Pizza</span><span class="preco">R$ 5,00</span></div>
+        </div>
 
-function toggleMenu(e){
-    e.stopPropagation();
-    const menu = document.getElementById("menuWrapper");
+        <div class="section">
+            <h2>🍲 Pratos</h2>
+            <div class="item"><span>Lasanha</span><span class="preco">R$ 10,00</span></div>
+            <div class="item"><span>Torta</span><span class="preco">R$ 8,00</span></div>
+            <div class="item"><span>Caldo</span><span class="preco">R$ 6,00</span></div>
+            <div class="item"><span>Creme de galinha</span><span class="preco">R$ 8,00</span></div>
+        </div>
 
-    if(!aberto){
-        menu.classList.remove("hide");
-        menu.classList.add("show");
-    } else {
-        menu.classList.remove("show");
-        menu.classList.add("hide");
-    }
+        <div class="section">
+            <h2>🍰 Doces</h2>
+            <div class="item"><span>Bolo mole</span><span class="preco">R$ 3,50</span></div>
+            <div class="item"><span>Bolo de cenoura com chocolate</span><span class="preco">R$ 3,50</span></div>
+        </div>
 
-    aberto = !aberto;
-}
+        <div class="section">
+            <h2>🥤 Bebidas</h2>
+            <div class="item"><span>Coca lata</span><span class="preco">R$ 5,00</span></div>
+            <div class="item"><span>Coca 600ml</span><span class="preco">R$ 7,00</span></div>
+            <div class="item"><span>Delrio 2L (Guaraná)</span><span class="preco">R$ 8,00</span></div>
+            <div class="item"><span>Delrio 250ml</span><span class="preco">R$ 2,00</span></div>
+        </div>
 
-// fechar clicando fora
-document.addEventListener("click", function(){
-    if(aberto){
-        const menu = document.getElementById("menuWrapper");
-        menu.classList.remove("show");
-        menu.classList.add("hide");
-        aberto = false;
-    }
-});
-</script>
+        <div class="section">
+            <h2>🍺 Cervejas</h2>
+            <div class="item"><span>Itaipava</span><span class="preco">R$ 5,00</span></div>
+            <div class="item"><span>Skol</span><span class="preco">R$ 5,00</span></div>
+        </div>
+    </div>
 
+    <a href="#" class="resumo-btn" onclick="abrirResumo(event)" id="resumoBtn">
+        📋 Ver resumo do pedido
+    </a>
+
+    <div id="modal" class="modal">
+        <div class="modal-content">
+            <h3>Seu Pedido</h3>
+            
+            <div id="lista" class="lista"></div>
+            <div id="total" class="total"></div>
+
+            <div class="form-group">
+                <label for="nomeCliente">Nome do cliente *</label>
+                <input type="text" id="nomeCliente" placeholder="Digite seu nome completo">
+                <div id="erroNome" class="error"></div>
+            </div>
+
+            <div class="entrega">
+                <label>
+                    <input type="checkbox" id="entregaCheck" onchange="toggleEndereco()">
+                    <span>🚀 Pedido para ENTREGA (+ R$ 5,00 de taxa)</span>
+                </label>
+            </div>
+
+            <div id="enderecoGroup" class="form-group" style="display: none;">
+                <label for="endereco">Endereço completo para entrega *</label>
+                <textarea id="endereco" rows="3" placeholder="Rua, número, bairro, ponto de referência..."></textarea>
+                <div id="erroEndereco" class="error"></div>
+            </div>
+
+            <div class="modal-buttons">
+                <a href="#" onclick="pedidoInstagram(event)" class="insta">📩 Instagram</a>
+                <a href="#" onclick="pedidoWhatsGeane(event)" class="whats">💬 WhatsApp - Geane</a>
+                <a href="#" onclick="pedidoWhatsEliane(event)" class="whats">💬 WhatsApp - Eliane</a>
+                <a href="#" onclick="fecharModal(event)" class="voltar">⬅ Voltar ao cardápio</a>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Configuração dos itens
+        document.querySelectorAll(".item").forEach(item => {
+            const nome = item.querySelector("span:first-child").textContent.trim();
+            const preco = parseFloat(item.querySelector(".preco").textContent.replace("R$", "").replace(",", ".").trim());
+
+            const qtyDiv = document.createElement("div");
+            qtyDiv.className = "qty";
+            qtyDiv.innerHTML = `
+                <button onclick="alterarQuantidade(this, -1)">–</button>
+                <span>0</span>
+                <button onclick="alterarQuantidade(this, 1)">+</button>
+            `;
+
+            item.nomeItem = nome;
+            item.precoItem = preco;
+            item.appendChild(qtyDiv);
+        });
+
+        let modoPedido = false;
+        const modoBtn = document.getElementById("modoBtn");
+
+        function toggleModo() {
+            modoPedido = !modoPedido;
+            document.body.classList.toggle("modo-pedido", modoPedido);
+            
+            if (modoPedido) {
+                modoBtn.innerHTML = '⬅ Voltar ao Cardápio';
+            } else {
+                modoBtn.innerHTML = '🛒 Fazer Pedido';
+            }
+            atualizarBotaoResumo();
+        }
+
+        function alterarQuantidade(btn, valor) {
+            const span = btn.parentElement.querySelector("span");
+            let qtd = parseInt(span.textContent) + valor;
+            if (qtd < 0) qtd = 0;
+            span.textContent = qtd;
+            atualizarBotaoResumo();
+        }
+
+        function calcularTotal(entrega = false) {
+            let total = 0;
+            document.querySelectorAll(".item").forEach(item => {
+                const qtd = parseInt(item.querySelector(".qty span").textContent || 0);
+                if (qtd > 0) total += item.precoItem * qtd;
+            });
+            return entrega ? total + 5 : total;
+        }
+
+        function atualizarBotaoResumo() {
+            const total = calcularTotal(false);
+            document.getElementById("resumoBtn").textContent = total > 0 
+                ? `📋 Ver resumo (R$ ${total.toFixed(2)})` 
+                : `📋 Ver resumo do pedido`;
+        }
+
+        function montarResumo() {
+            let texto = "";
+            document.querySelectorAll(".item").forEach(item => {
+                const qtd = parseInt(item.querySelector(".qty span").textContent || 0);
+                if (qtd > 0) {
+                    texto += `• ${item.nomeItem} × ${qtd}<br>`;
+                }
+            });
+            document.getElementById("lista").innerHTML = texto || "<em>Nenhum item selecionado ainda...</em>";
+            document.getElementById("total").innerHTML = `Subtotal: R$ ${calcularTotal(false).toFixed(2)}`;
+        }
+
+        function toggleEndereco() {
+            const entrega = document.getElementById("entregaCheck").checked;
+            document.getElementById("enderecoGroup").style.display = entrega ? "block" : "none";
+            atualizarTotalModal();
+        }
+
+        function atualizarTotalModal() {
+            const entrega = document.getElementById("entregaCheck").checked;
+            const totalFinal = calcularTotal(entrega);
+            document.getElementById("total").innerHTML = entrega 
+                ? `Total com entrega: R$ ${totalFinal.toFixed(2)}` 
+                : `Subtotal: R$ ${totalFinal.toFixed(2)}`;
+        }
+
+        function validarFormulario() {
+            let valido = true;
+            const nome = document.getElementById("nomeCliente").value.trim();
+            const entrega = document.getElementById("entregaCheck").checked;
+            const endereco = document.getElementById("endereco").value.trim();
+
+            document.getElementById("erroNome").textContent = "";
+            document.getElementById("erroEndereco").textContent = "";
+
+            if (!nome) {
+                document.getElementById("erroNome").textContent = "⚠️ Nome é obrigatório";
+                valido = false;
+            }
+            if (entrega && !endereco) {
+                document.getElementById("erroEndereco").textContent = "⚠️ Endereço é obrigatório para entrega";
+                valido = false;
+            }
+            return valido;
+        }
+
+        function abrirResumo(e) {
+            e.preventDefault();
+            document.getElementById("entregaCheck").checked = false;
+            document.getElementById("enderecoGroup").style.display = "none";
+            document.getElementById("nomeCliente").value = "";
+            document.getElementById("endereco").value = "";
+            montarResumo();
+            document.getElementById("modal").style.display = "flex";
+        }
+
+        function fecharModal(e) {
+            if (e) e.preventDefault();
+            document.getElementById("modal").style.display = "none";
+        }
+
+        function montarMensagem() {
+            let msg = "Olá! Gostaria de fazer o seguinte pedido:\n\n";
+            let subtotal = 0;
+
+            document.querySelectorAll(".item").forEach(item => {
+                const qtdSpan = item.querySelector(".qty span");
+                const qtd = qtdSpan ? parseInt(qtdSpan.textContent) : 0;
+                
+                if (qtd > 0) {
+                    const nomeDoItem = item.nomeItem || "Item";
+                    msg += `- ${nomeDoItem} × ${qtd}\n`;
+                    subtotal += (item.precoItem || 0) * qtd;
+                }
+            });
+
+            const nomeCliente = document.getElementById("nomeCliente").value.trim() || "Cliente";
+            const entrega = document.getElementById("entregaCheck").checked;
+            const endereco = document.getElementById("endereco").value.trim();
+            const totalFinal = entrega ? subtotal + 5 : subtotal;
+
+            msg += `\nCliente: ${nomeCliente}\n`;
+
+            if (entrega && endereco) {
+                msg += `Endereço: ${endereco}\n`;
+                msg += "✅ PEDIDO PARA ENTREGA (+ R$ 5,00 de taxa)\n";
+            }
+
+            msg += `\nTotal: R$ ${totalFinal.toFixed(2)}\n\nObrigado!`;
+            return msg;
+        }
+
+        // === NOVA FUNÇÃO DO INSTAGRAM (com botão) ===
+        function pedidoInstagram(e) {
+            e.preventDefault();
+            if (!validarFormulario()) return;
+
+            const msg = montarMensagem();
+
+            // Tenta copiar a mensagem
+            navigator.clipboard.writeText(msg).then(() => {
+                const irParaInsta = confirm("✅ Mensagem copiada com sucesso!\n\n" +
+                                           "Deseja abrir o Instagram agora para colar no chat da @lanchoneteelshaday2026?");
+                
+                if (irParaInsta) {
+                    window.open("https://www.instagram.com/lanchoneteelshaday2026", "_blank");
+                }
+            }).catch(() => {
+                const irParaInsta = confirm("✅ Mensagem pronta!\n\n" +
+                                           "Não foi possível copiar automaticamente.\n" +
+                                           "Deseja abrir o Instagram para colar manualmente?");
+                
+                if (irParaInsta) {
+                    window.open("https://www.instagram.com/lanchoneteelshaday2026", "_blank");
+                }
+            });
+        }
+
+        function pedidoWhatsGeane(e) {
+            e.preventDefault();
+            if (!validarFormulario()) return;
+            const msg = montarMensagem();
+            const url = "https://wa.me/558888956516?text=" + encodeURIComponent(msg);
+            window.open(url, "_blank");
+        }
+
+        function pedidoWhatsEliane(e) {
+            e.preventDefault();
+            if (!validarFormulario()) return;
+            const msg = montarMensagem();
+            const url = "https://wa.me/558894487711?text=" + encodeURIComponent(msg);
+            window.open(url, "_blank");
+        }
+
+        document.getElementById("modal").addEventListener("click", function(e) {
+            if (e.target === this) fecharModal();
+        });
+    </script>
 </body>
 </html>
