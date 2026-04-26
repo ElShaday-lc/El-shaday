@@ -442,7 +442,7 @@
             // Tenta copiar a mensagem
             navigator.clipboard.writeText(msg).then(() => {
                 const irParaInsta = confirm("✅ Mensagem copiada com sucesso!\n\n" +
-                                           "Deseja abrir o Instagram agora para colar no chat da @lanchoneteelshaday2026?");
+                                           "Por gentileza, volte a pagina e cole o seu pedido no chat de nossa lanchonete");
                 
                 if (irParaInsta) {
                     window.open("https://www.instagram.com/lanchoneteelshaday2026", "_blank");
@@ -450,7 +450,7 @@
             }).catch(() => {
                 const irParaInsta = confirm("✅ Mensagem pronta!\n\n" +
                                            "Não foi possível copiar automaticamente.\n" +
-                                           "Deseja abrir o Instagram para colar manualmente?");
+                                           "Por gentileza, volte a pagina e cole o seu pedido no chat de nossa lanchonete");
                 
                 if (irParaInsta) {
                     window.open("https://www.instagram.com/lanchoneteelshaday2026", "_blank");
