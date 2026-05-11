@@ -5,12 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cardápio Digital - El Shaday</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    
+   
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&display=swap');
-
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Montserrat', sans-serif; }
-
         body {
             background: url('https://i.ibb.co/SwzFSC6y/file-000000008bc871f5b8de0c092579cb21.png') no-repeat center center fixed;
             background-size: cover;
@@ -20,7 +18,6 @@
             display: flex;
             justify-content: center;
         }
-
         .container {
             background: rgba(0, 0, 0, 0.75);
             padding: 35px 20px;
@@ -30,12 +27,9 @@
             width: 92%;
             border: 1px solid rgba(255,255,255,0.1);
         }
-
         .logo { width: 130px; display: block; margin: 0 auto 10px; }
         .title { text-align: center; margin-bottom: 25px; }
-
         .section { margin-bottom: 30px; }
-
         .section h2 {
             font-size: 0.95rem;
             margin-bottom: 12px;
@@ -44,7 +38,6 @@
             border-bottom: 1px solid rgba(255,255,255,0.2);
             padding-bottom: 6px;
         }
-
         .item {
             display: flex;
             justify-content: space-between;
@@ -53,7 +46,6 @@
             border-bottom: 1px dashed rgba(255,255,255,0.15);
             font-size: 0.97rem;
         }
-
         .item span:first-child { flex: 1; padding-right: 10px; }
         .item .preco {
             min-width: 75px;
@@ -61,7 +53,6 @@
             font-weight: 600;
             color: #ffb43a;
         }
-
         .qty {
             display: none;
             gap: 8px;
@@ -84,7 +75,6 @@
             font-weight: 600;
             font-size: 1.05rem;
         }
-
         .modo-btn {
             position: fixed;
             top: 15px;
@@ -100,12 +90,10 @@
             transition: all 0.3s ease;
             user-select: none;
         }
-
         .modo-pedido .modo-btn {
             background: linear-gradient(45deg, #555, #777);
             color: white;
         }
-
         .resumo-btn {
             position: fixed;
             bottom: 20px;
@@ -123,7 +111,6 @@
             white-space: nowrap;
         }
         .modo-pedido .resumo-btn { display: block; }
-
         .modal {
             position: fixed;
             inset: 0;
@@ -133,7 +120,6 @@
             align-items: center;
             z-index: 99999;
         }
-
         .modal-content {
             background: #111;
             padding: 25px;
@@ -141,20 +127,14 @@
             width: 90%;
             max-width: 400px;
         }
-
         .modal h3 { margin-bottom: 15px; text-align: center; font-size: 1.3rem; }
-
-        .form-group {
-            margin-bottom: 15px;
-        }
-
+        .form-group { margin-bottom: 15px; }
         .form-group label {
             display: block;
             margin-bottom: 5px;
             font-size: 0.95rem;
             font-weight: 600;
         }
-
         .form-group input, .form-group textarea {
             width: 100%;
             padding: 12px;
@@ -164,10 +144,8 @@
             color: white;
             font-size: 1rem;
         }
-
         .lista { margin: 15px 0; line-height: 1.7; font-size: 1rem; }
         .total { font-weight: bold; text-align: center; margin: 15px 0; font-size: 1.2rem; color: #ffb43a; }
-
         .entrega {
             background: rgba(255, 180, 58, 0.15);
             border: 2px solid #ffb43a;
@@ -175,7 +153,6 @@
             padding: 12px;
             margin: 15px 0;
         }
-
         .modal-buttons a {
             display: block;
             margin: 8px 0;
@@ -187,30 +164,27 @@
             color: white;
             font-size: 1.05rem;
         }
-
         .insta { background: linear-gradient(45deg, #833ab4, #fd1d1d, #fcb045); }
         .whats { background: #25d366; }
         .voltar { background: #444; }
-
         .error { color: #ff6b6b; font-size: 0.85rem; margin-top: 4px; }
     </style>
 </head>
 <body>
-
     <div class="modo-btn" id="modoBtn" onclick="toggleModo()">
         🛒 Fazer Pedido
     </div>
-
     <div class="container">
         <img src="https://i.ibb.co/kgBQGyR5/Screenshot-20260422-085129-Instagram.png" class="logo" alt="Logo El Shaday">
         <div class="title"><h2>Cardápio Digital</h2></div>
-
+        
         <div class="section">
             <h2>🍴 Salgados</h2>
             <div class="item"><span>Empadinha de frango</span><span class="preco">R$ 8,00</span></div>
             <div class="item"><span>Empadinha de camarão</span><span class="preco">R$ 10,00</span></div>
             <div class="item"><span>Coxinha</span><span class="preco">R$ 5,00</span></div>
-            <div class="item"><span>Pastel</span><span class="preco">R$ 6,00</span></div>
+            <div class="item"><span>Salgado Misto</span><span class="preco">R$ 5,00</span></div>
+            <div class="item"><span>Salgado de Frango</span><span class="preco">R$ 5,00</span></div>
             <div class="item"><span>Pizza (Fatia)</span><span class="preco">R$ 5,00</span></div>
         </div>
 
@@ -218,7 +192,7 @@
             <h2>🍲 Pratos</h2>
             <div class="item"><span>Lasanha (Pedaço)</span><span class="preco">R$ 10,00</span></div>
             <div class="item"><span>Torta (Pedaço)</span><span class="preco">R$ 8,00</span></div>
-            <div class="item"><span>Caldo</span><span class="preco">R$ 6,00</span></div>
+            <div class="item"><span>Sopa</span><span class="preco">R$ 8,00</span></div>
             <div class="item"><span>Creme de galinha</span><span class="preco">R$ 8,00</span></div>
         </div>
 
@@ -238,6 +212,14 @@
         <!-- ============================================================ -->
 
         <div class="section">
+            <h2>🥟 Pastéis</h2>
+            <div class="item"><span>Pastel Misto</span><span class="preco">R$ 6,00</span></div>
+            <div class="item"><span>Pastel de Frango</span><span class="preco">R$ 8,00</span></div>
+            <div class="item"><span>Pastel de Frango com Queijo</span><span class="preco">R$ 10,00</span></div>
+            <div class="item"><span>Pastel de Pizza</span><span class="preco">R$ 8,00</span></div>
+        </div>
+
+        <div class="section">
             <h2>🍰 Doces</h2>
             <div class="item"><span>Bolo mole (Pedaço)</span><span class="preco">R$ 3,50</span></div>
             <div class="item"><span>Bolo de cenoura com chocolate (Pedaço)</span><span class="preco">R$ 3,50</span></div>
@@ -247,8 +229,8 @@
             <h2>🥤 Bebidas</h2>
             <div class="item"><span>Coca lata</span><span class="preco">R$ 5,00</span></div>
             <div class="item"><span>Coca 600ml</span><span class="preco">R$ 7,00</span></div>
-            <div class="item"><span>Delrio 2L (Guaraná)</span><span class="preco">R$ 8,00</span></div>
-            <div class="item"><span>Delrio 250ml</span><span class="preco">R$ 2,00</span></div>
+            <div class="item"><span>Delrio 1L (Guaraná)</span><span class="preco">R$ 7,00</span></div>
+            <div class="item"><span>Delrio 250ml</span><span class="preco">R$ 2,50</span></div>
         </div>
 
         <div class="section">
@@ -265,29 +247,24 @@
     <div id="modal" class="modal">
         <div class="modal-content">
             <h3>Seu Pedido</h3>
-            
             <div id="lista" class="lista"></div>
             <div id="total" class="total"></div>
-
             <div class="form-group">
                 <label for="nomeCliente">Nome do cliente *</label>
                 <input type="text" id="nomeCliente" placeholder="Digite seu nome completo">
                 <div id="erroNome" class="error"></div>
             </div>
-
             <div class="entrega">
                 <label>
                     <input type="checkbox" id="entregaCheck" onchange="toggleEndereco()">
                     <span>🚀 Pedido para ENTREGA (+ R$ 5,00 de taxa)</span>
                 </label>
             </div>
-
             <div id="enderecoGroup" class="form-group" style="display: none;">
                 <label for="endereco">Endereço completo para entrega *</label>
                 <textarea id="endereco" rows="3" placeholder="Rua, número, bairro, ponto de referência..."></textarea>
                 <div id="erroEndereco" class="error"></div>
             </div>
-
             <div class="modal-buttons">
                 <a href="#" onclick="pedidoInstagram(event)" class="insta">📩 Instagram</a>
                 <a href="#" onclick="pedidoWhatsGeane(event)" class="whats">💬 WhatsApp - Geane</a>
@@ -302,7 +279,6 @@
         document.querySelectorAll(".item").forEach(item => {
             const nome = item.querySelector("span:first-child").textContent.trim();
             const preco = parseFloat(item.querySelector(".preco").textContent.replace("R$", "").replace(",", ".").trim());
-
             const qtyDiv = document.createElement("div");
             qtyDiv.className = "qty";
             qtyDiv.innerHTML = `
@@ -310,7 +286,6 @@
                 <span>0</span>
                 <button onclick="alterarQuantidade(this, 1)">+</button>
             `;
-
             item.nomeItem = nome;
             item.precoItem = preco;
             item.appendChild(qtyDiv);
@@ -322,12 +297,7 @@
         function toggleModo() {
             modoPedido = !modoPedido;
             document.body.classList.toggle("modo-pedido", modoPedido);
-            
-            if (modoPedido) {
-                modoBtn.innerHTML = '⬅ Voltar ao Cardápio';
-            } else {
-                modoBtn.innerHTML = '🛒 Fazer Pedido';
-            }
+            modoBtn.innerHTML = modoPedido ? '⬅ Voltar ao Cardápio' : '🛒 Fazer Pedido';
             atualizarBotaoResumo();
         }
 
@@ -350,8 +320,8 @@
 
         function atualizarBotaoResumo() {
             const total = calcularTotal(false);
-            document.getElementById("resumoBtn").textContent = total > 0 
-                ? `📋 Ver resumo (R$ ${total.toFixed(2)})` 
+            document.getElementById("resumoBtn").textContent = total > 0
+                ? `📋 Ver resumo (R$ ${total.toFixed(2)})`
                 : `📋 Ver resumo do pedido`;
         }
 
@@ -376,8 +346,8 @@
         function atualizarTotalModal() {
             const entrega = document.getElementById("entregaCheck").checked;
             const totalFinal = calcularTotal(entrega);
-            document.getElementById("total").innerHTML = entrega 
-                ? `Total com entrega: R$ ${totalFinal.toFixed(2)}` 
+            document.getElementById("total").innerHTML = entrega
+                ? `Total com entrega: R$ ${totalFinal.toFixed(2)}`
                 : `Subtotal: R$ ${totalFinal.toFixed(2)}`;
         }
 
@@ -401,32 +371,14 @@
             return valido;
         }
 
-        function abrirResumo(e) {
-            e.preventDefault();
-            document.getElementById("entregaCheck").checked = false;
-            document.getElementById("enderecoGroup").style.display = "none";
-            document.getElementById("nomeCliente").value = "";
-            document.getElementById("endereco").value = "";
-            montarResumo();
-            document.getElementById("modal").style.display = "flex";
-        }
-
-        function fecharModal(e) {
-            if (e) e.preventDefault();
-            document.getElementById("modal").style.display = "none";
-        }
-
         function montarMensagem() {
             let msg = "Olá! Gostaria de fazer o seguinte pedido:\n\n";
             let subtotal = 0;
 
             document.querySelectorAll(".item").forEach(item => {
-                const qtdSpan = item.querySelector(".qty span");
-                const qtd = qtdSpan ? parseInt(qtdSpan.textContent) : 0;
-                
+                const qtd = parseInt(item.querySelector(".qty span").textContent || 0);
                 if (qtd > 0) {
-                    const nomeDoItem = item.nomeItem || "Item";
-                    msg += `- ${nomeDoItem} × ${qtd}\n`;
+                    msg += `- ${item.nomeItem} × ${qtd}\n`;
                     subtotal += (item.precoItem || 0) * qtd;
                 }
             });
@@ -437,27 +389,23 @@
             const totalFinal = entrega ? subtotal + 5 : subtotal;
 
             msg += `\nCliente: ${nomeCliente}\n`;
-
             if (entrega && endereco) {
                 msg += `Endereço: ${endereco}\n`;
                 msg += "✅ PEDIDO PARA ENTREGA (+ R$ 5,00 de taxa)\n";
             }
-
             msg += `\nTotal: R$ ${totalFinal.toFixed(2)}\n\nObrigado!`;
             return msg;
         }
 
-        // Funções de envio
         function pedidoInstagram(e) {
             e.preventDefault();
             if (!validarFormulario()) return;
             const msg = montarMensagem();
             navigator.clipboard.writeText(msg).then(() => {
-                const irParaInsta = confirm("✅ Mensagem copiada com sucesso!\n\nPor gentileza, volte a pagina e cole o seu pedido no chat de nossa lanchonete");
-                if (irParaInsta) window.open("https://www.instagram.com/lanchoneteelshaday2026", "_blank");
+                alert("✅ Mensagem copiada! Agora é só colar no Instagram.");
+                window.open("https://www.instagram.com/lanchoneteelshaday2026", "_blank");
             }).catch(() => {
-                const irParaInsta = confirm("✅ Mensagem pronta!\n\nNão foi possível copiar automaticamente.\nPor gentileza, volte a pagina e cole o seu pedido no chat de nossa lanchonete");
-                if (irParaInsta) window.open("https://www.instagram.com/lanchoneteelshaday2026", "_blank");
+                alert("Mensagem gerada. Copie manualmente e envie no Instagram.");
             });
         }
 
@@ -477,6 +425,22 @@
             window.open(url, "_blank");
         }
 
+        function abrirResumo(e) {
+            e.preventDefault();
+            document.getElementById("entregaCheck").checked = false;
+            document.getElementById("enderecoGroup").style.display = "none";
+            document.getElementById("nomeCliente").value = "";
+            document.getElementById("endereco").value = "";
+            montarResumo();
+            document.getElementById("modal").style.display = "flex";
+        }
+
+        function fecharModal(e) {
+            if (e) e.preventDefault();
+            document.getElementById("modal").style.display = "none";
+        }
+
+        // Fechar modal clicando fora
         document.getElementById("modal").addEventListener("click", function(e) {
             if (e.target === this) fecharModal();
         });
